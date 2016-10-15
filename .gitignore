@@ -1,0 +1,33 @@
+## Ephermeral files
+~$
+*.py[co]
+__pycache__/
+*.profile
+*.out
+*.output
+*_tmp
+
+# profiling output files
+profiles/
+
+*.7z
+*.tar.*
+
+## Builds/Packaging
+*.egg-info/
+dist/
+_build/
+build/
+
+## Local
+venv*/
+.python-version
+
+# Scratch
+Untitled*.ipynb
+ipynb_checkpoints/
+
+# Coverage
+.coverage
+coverage.xml
+coverage_html_report/

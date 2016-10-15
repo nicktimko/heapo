@@ -1,0 +1,20 @@
+sudo: false
+language: python
+python:
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+  - "nightly"
+
+matrix:
+  fast_finish: true
+  allow_failures:
+  - python: "3.6"
+  - python: "nightly"
+
+script:
+  - python tests.py
+
+# after_success:
+#   - codecov
