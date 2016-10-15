@@ -1,4 +1,7 @@
-"""Unittests for heapq."""
+"""
+Unittests for heapq (<cpython>/Lib/test/test_heapq.py) ported for use with
+a heap object
+"""
 
 import random
 import unittest
@@ -51,13 +54,26 @@ class TestHeap(TestCase):
                 parentpos = (pos-1) >> 1
                 self.assertTrue(heap[parentpos] <= item)
 
-    def test_heapify(self):
+    def test_heapinit(self):
         for size in list(range(30)) + [20000]:
             heap = [random.random() for dummy in range(size)]
             heap = self.heap_type(heap)
             self.check_invariant(heap)
 
         self.assertRaises(TypeError, self.heap_type, None)
+
+    def test_peek(self):
+        for _ in range(10):
+            init_data = [random.random() for _ in range(100)]
+            min_ = min(init_data)
+            heap = self.heap_type(init_data)
+            self.assertEqual(heap.peek(), min_)
+
+            for _ in range(10):
+                x = random.random() / 20
+                min_ = min(min_, x)
+                heap.push(x)
+                self.assertEqual(heap.peek(), min_)
 
     def test_naive_nbest(self):
         data = [random.randrange(2000) for i in range(1000)]
@@ -157,7 +173,12 @@ class TestHeap(TestCase):
         self.assertEqual(hsort(data, LT), target)
         self.assertRaises(TypeError, data, LE)
 
-
+    def test_roundtrip_repr(self):
+        data = [5, 1, 4, 2, 3]
+        heap = self.heap_type(data)
+        representation = repr(heap)
+        reconstructed = eval(representation)
+        self.assertEqual(set(heap), set(reconstructed))
 #==============================================================================
 
 class LenOnly:

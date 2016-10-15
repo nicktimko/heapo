@@ -16,12 +16,14 @@ The goal of this repo is to build and document a heap object for eventual inclus
   * `__len__`
   * `__iter__`
   * `__getitem__`
+3. Add peek method to show, but not consume, lowest heap value
 
 ### Todo
 * Allow custom comparison/key operation
 
-### Maybe
-* ...
+### Open Questions
+* Should `__init__` shallow-copy the list or leave that up to the caller?
+* How much should the underlying list be exposed? Is there a use case for `__setitem__`, `__delitem__`?
 
 ## Bling
 

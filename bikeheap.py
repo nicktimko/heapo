@@ -32,6 +32,9 @@ class BikeHeap(object):
     def push(self, item):
         heapq.heappush(self.heap, item)
 
+    def peek(self):
+        return self.heap[0]
+
     def pushpop(self, item):
         return heapq.heappushpop(self.heap, item)
 

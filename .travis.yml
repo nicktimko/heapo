@@ -14,7 +14,7 @@ matrix:
   - python: "nightly"
 
 script:
-  - python tests.py
+  - nosetests
 
-# after_success:
-#   - codecov
+after_success:
+  - codecov

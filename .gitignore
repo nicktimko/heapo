@@ -31,3 +31,10 @@ ipynb_checkpoints/
 .coverage
 coverage.xml
 coverage_html_report/
+htmlcov/
+
+## OS Crap
+Thumbs.db
+desktop.ini
+.DS_Store
+._*
