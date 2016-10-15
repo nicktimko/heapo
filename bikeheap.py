@@ -23,9 +23,6 @@ class BikeHeap(object):
     def __iter__(self):
         return iter(self.heap)
 
-    def __getitem__(self, index):
-        return self.heap[index]
-
     def pop(self):
         return heapq.heappop(self.heap)
 

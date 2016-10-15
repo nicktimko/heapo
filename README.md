@@ -13,17 +13,17 @@ The goal of this repo is to build and document a heap object for eventual inclus
 ### Implemented
 1. Provide all existing `heapq.heap*` functions provided by the [`heapq` module][heapq-py] as methods with identical semantics
 2. Provide `collections.abc.Sequence` magic methods to the underlying heap structure
-  * `__len__`
-  * `__iter__`
-  * `__getitem__`
+  * `__len__`: How big is it, enables Truthy checking
+  * `__iter__`: To copy to something else
 3. Add peek method to show, but not consume, lowest heap value
 
 ### Todo
-* Allow custom comparison/key operation
+* Custom comparison/key operation
 
 ### Open Questions
-* Should `__init__` shallow-copy the list or leave that up to the caller?
+* Should `__init__` shallow-copy the list or leave that up to the caller? Less memory if the heap object just co-opts it, but user might accidentally reuse the reference and ruin the heap. If we make our own list then it's easier to just suck in any arbitrary iterable.
 * How much should the underlying list be exposed? Is there a use case for `__setitem__`, `__delitem__`?
+* Add some method to consume the heap in an ordered fashion?
 
 ## Bling
 

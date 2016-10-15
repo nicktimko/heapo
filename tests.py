@@ -48,6 +48,12 @@ class TestHeap(TestCase):
             pass
 
     def check_invariant(self, heap):
+        if type(heap) == self.heap_type:
+            heap = heap.heap # extract the actual heap out of the implementation
+        elif isinstance(heap, list):
+            pass
+        else:
+            heap = list(heap)
         # Check the heap invariant.
         for pos, item in enumerate(heap):
             if pos: # pos 0 has no parent
@@ -102,7 +108,7 @@ class TestHeap(TestCase):
         heap = data[:10]
         heap = self.heap_type(heap)
         for item in data[10:]:
-            if item > heap[0]:  # this gets rarer the longer we run
+            if item > heap.peek():  # this gets rarer the longer we run
                 heap.replace(item)
         self.assertEqual(list(self.heapiter(heap)), sorted(data)[-10:])
 
@@ -126,7 +132,7 @@ class TestHeap(TestCase):
         h = self.heap_type([10])
         x = h.pushpop(10.0)
         self.assertEqual((list(h), x), ([10], 10.0))
-        self.assertEqual(type(h[0]), int)
+        self.assertEqual(type(h.peek()), int)
         self.assertEqual(type(x), float)
 
         h = self.heap_type([10])
